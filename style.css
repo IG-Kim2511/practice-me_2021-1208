@@ -149,6 +149,15 @@ header nav ul li{
     display: flex;
     
 }
+
+.products {
+    height: 100%;
+    width: 75%;
+    display: grid;
+    
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(3, 3fr);
+}
 .products img{
     width: 200px;
 }
