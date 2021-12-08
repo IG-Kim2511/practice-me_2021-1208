@@ -37,7 +37,7 @@ function renderProducts() {
             <div class="add-to-wishlist">
                 <img src="./icons/heart.png" alt="add to wish list">
             </div>
-            <div class="add-to-cart" >
+            <div class="add-to-cart" onClick="addToCart(${product.id})">
                 <img src="./icons/bag-plus.png" alt="add to cart">
             </div>
         </div>
@@ -51,9 +51,70 @@ renderProducts();
 let cart = [];
 
 // 🍀js13, add to cart
+/* 🍄
+10 EMPTY ARRAY 
 
-function addToCart(params) {
+20.  clicked item.id === products.id...cart adding
+
+array.find
+
+find...const item
+..spread operator
+
+numberOfUnits:1 adding on products.js
+
+30. clicked item.id === products.id, not add it on cart array.  amount up
+
+array.some
+
+40. updateCart -> renderCartItems
+
+*/
+
+// function addToCart(p_id) {
+
+//     if (cart.some((a)=>{a.id ===p_id})) {
+
+
+//         // 🍚
+//         // changeNumberOfUnits('plus',p_id)
+//         console.log('add and minus')
+        
+//     } else {
+//         const item = products.find((a)=>{a.id ===p_id});
+        
+//         cart.push({
+//             ...item,
+//         numberOfUnits:1,
+//     });
+
+//         // cart.push({...item});
+//         /* 🍚 */
+//     }
+//     console.log(cart)
+//     updateCart();
+    
+// }
+
+function addToCart(p_id) {
+    if (cart.some((a)=>a.id ===p_id)) {
+        console.log("same")
+        
+    } else {
+
+        let item = products.find((b)=>b.id === p_id);
+        cart.push(item);
+        
+    }
+    console.log(cart)
+}
+
+
+
+function changeNumberOfUnits() {
     
 }
 
-addToCart();
+function updateCart(params) {
+    
+}
