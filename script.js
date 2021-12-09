@@ -157,24 +157,17 @@ function changeNumberOfUnits(action,id) {
                 numberOfUnits--;
                 
             } else if (action ==="plus" && numberOfUnits < item.instock) {
-                numberOfUnits++;
-                
+                numberOfUnits++;                
             }
-        
-            
-
         }
 
         return{
             ...item,
             numberOfUnits: numberOfUnits,
-        };
-
-    
+        };    
     });
 
     updateCart();
-
 }
 
 
