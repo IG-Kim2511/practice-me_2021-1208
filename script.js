@@ -71,50 +71,66 @@ array.some
 
 */
 
-// function addToCart(p_id) {
-
-//     if (cart.some((a)=>{a.id ===p_id})) {
-
-
-//         // 🍚
-//         // changeNumberOfUnits('plus',p_id)
-//         console.log('add and minus')
-        
-//     } else {
-//         const item = products.find((a)=>{a.id ===p_id});
-        
-//         cart.push({
-//             ...item,
-//         numberOfUnits:1,
-//     });
-
-//         // cart.push({...item});
-//         /* 🍚 */
-//     }
-//     console.log(cart)
-//     updateCart();
-    
-// }
-
 function addToCart(p_id) {
     if (cart.some((a)=>a.id ===p_id)) {
         console.log("same")
-        
+        /* 🍚 */
     } else {
 
         let item = products.find((b)=>b.id === p_id);
+        // cart.push(item);
         cart.push(item);
+        cart.push(
+            {
+                ...item,
+                numberOfUnits:1,
+            }
+        );
         
     }
     console.log(cart)
+    updateCart();
+}
+
+// js13-40 update cart
+function updateCart(params) {
+
 }
 
 
 
 function changeNumberOfUnits() {
-    
+
 }
 
-function updateCart(params) {
-    
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
