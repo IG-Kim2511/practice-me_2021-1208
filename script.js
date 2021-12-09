@@ -18,6 +18,7 @@ innerHTML +=
 onClick : js renderingg element ...making variable
 */
 
+renderProducts();
 function renderProducts() {
     products.forEach((product)=>{
         productsEl.innerHTML +=`
@@ -45,7 +46,6 @@ function renderProducts() {
         `;
     });
 }
-renderProducts();
 
 //🍖js13-20
 let cart = [];
@@ -97,7 +97,7 @@ save cart to local storage
 */
 function updateCart() {
 
-    rednderCartItems();
+    renderCartItems();
     renderSubtotal();
     /* js 45   🍚*/
 }
@@ -107,7 +107,7 @@ function updateCart() {
 
 onclick*/
 
-function rednderCartItems() {
+function renderCartItems() {
 
     cartItemsEl.innerHTML="";
 
@@ -122,9 +122,9 @@ function rednderCartItems() {
                     <small>$</small>${pp_item.price}
                 </div>
                 <div class="units">
-                    <div class="btn minus" onClick="changeNumberOfUnits('plus,${pp_item.id})" >-</div>
-                    <div class="number" onClick="changeNumberOfUnits('minus,${pp_item.id})">${pp_item.numberOfUnits}</div>
-                    <div class="btn plus" >+</div>           
+                    <div class="btn minus" onClick="changeNumberOfUnits('plus',${pp_item.id})" >-</div>
+                    <div class="number">${pp_item.numberOfUnits}</div>
+                    <div class="btn plus"  onClick="changeNumberOfUnits('minus',${pp_item.id})" >+</div>           
                 </div>
             </div>
         `;
@@ -134,7 +134,46 @@ function rednderCartItems() {
 
 
 // js28, + - click, change number of units
-function changeNumberOfUnits() {
+
+/* 🍄
+
+10 item.id === onclick..id 
+
+ > minus +1
+
+ < plus + insotck 
+
+ 20. return. 
+
+
+*/
+function changeNumberOfUnits(action,id) {
+
+    cart =cart.map((item)=>{
+        let numberOfUnits = item.numberOfUnits;
+
+        if (item.id ===id) {
+            if (action ==="minus" && numberOfUnits >1 ) {
+                numberOfUnits--;
+                
+            } else if (action ==="plus" && numberOfUnits < item.instock) {
+                numberOfUnits++;
+                
+            }
+        
+            
+
+        }
+
+        return{
+            ...item,
+            numberOfUnits: numberOfUnits,
+        };
+
+    
+    });
+
+    updateCart();
 
 }
 
