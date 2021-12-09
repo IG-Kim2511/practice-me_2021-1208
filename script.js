@@ -79,7 +79,6 @@ function addToCart(p_id) {
 
         let item = products.find((b)=>b.id === p_id);
         // cart.push(item);
-        cart.push(item);
         cart.push(
             {
                 ...item,
@@ -93,14 +92,56 @@ function addToCart(p_id) {
 }
 
 // js13-40 update cart
-function updateCart(params) {
+/* 
+save cart to local storage
+*/
+function updateCart() {
+
+    rednderCartItems();
+    renderSubtotal();
+    /* js 45   🍚*/
+}
+
+
+/* js13-40
+
+onclick*/
+
+function rednderCartItems() {
+
+    cartItemsEl.innerHTML="";
+
+    cart.forEach((pp_item)=>{
+        cartItemsEl.innerHTML +=`        
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="${pp_item.imgSrc}" alt="${pp_item.name}">
+                    <h4>${pp_item.name}</h4>
+                </div>
+                <div class="unit-price">
+                    <small>$</small>${pp_item.price}
+                </div>
+                <div class="units">
+                    <div class="btn minus" onClick="changeNumberOfUnits('plus,${pp_item.id})" >-</div>
+                    <div class="number" onClick="changeNumberOfUnits('minus,${pp_item.id})">${pp_item.numberOfUnits}</div>
+                    <div class="btn plus" >+</div>           
+                </div>
+            </div>
+        `;
+    });
+    
+}
+
+
+// js28, + - click, change number of units
+function changeNumberOfUnits() {
 
 }
 
 
 
-function changeNumberOfUnits() {
-
+function renderSubtotal(params) {
+    
 }
 
 
