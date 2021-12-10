@@ -114,7 +114,7 @@ function renderCartItems() {
     cart.forEach((pp_item)=>{
         cartItemsEl.innerHTML +=`        
             <div class="cart-item">
-                <div class="item-info">
+                <div class="item-info" onclick="removeItemFromCart(${pp_item.id})">
                     <img src="${pp_item.imgSrc}" alt="${pp_item.name}">
                     <h4>${pp_item.name}</h4>
                 </div>
@@ -148,35 +148,47 @@ function renderCartItems() {
 
 */
 function changeNumberOfUnits(action,id) {
-
     cart =cart.map((item)=>{
         let numberOfUnits = item.numberOfUnits;
 
         if (item.id ===id) {
             if (action ==="minus" && numberOfUnits >1 ) {
-                numberOfUnits--;
-                
+                numberOfUnits--;                
             } else if (action ==="plus" && numberOfUnits < item.instock) {
                 numberOfUnits++;                
             }
         }
-
         return{
             ...item,
             numberOfUnits: numberOfUnits,
         };    
     });
-
     updateCart();
 }
 
-
-
-function renderSubtotal(params) {
+/* js35, calculate */
+function renderSubtotal() {
     
+    let totalPrice = 0;
+    let totalItems = 0;
+
+    cart.forEach((pp_item)=>{
+        totalPrice += pp_item.price * pp_item.numberOfUnits;
+        totalItems += pp_item.numberOfUnits;
+    });
+
+    subtotalEl.innerHTML = `Subtotal(${totalItems} items) : $ ${totalPrice.toFixed(2)}`;
+    totalItemsInCartEl.innerHTML = totalItems;
 }
 
+// js41. remove item from cart
 
+function removeItemFromCart(p_id) {
+    console.log('remove')
+    cart = cart.filter(pp_item => pp_item.id !== p_id);
+
+    updateCart();
+}
 
 
 
