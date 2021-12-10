@@ -48,7 +48,12 @@ function renderProducts() {
 }
 
 //🍖js13-20
-let cart = [];
+// let cart = [];
+
+// localstorage
+let cart = JSON.parse(localStorage.getItem("CART")) || [];
+updateCart();
+
 
 // 🍀js13, add to cart
 /* 🍄
@@ -167,10 +172,11 @@ function changeNumberOfUnits(action,id) {
 }
 
 /* js35, calculate */
+let totalPrice = 0;
+let totalItems = 0;
+
 function renderSubtotal() {
     
-    let totalPrice = 0;
-    let totalItems = 0;
 
     cart.forEach((pp_item)=>{
         totalPrice += pp_item.price * pp_item.numberOfUnits;
@@ -190,9 +196,23 @@ function removeItemFromCart(p_id) {
     updateCart();
 }
 
+// localstorage.clear(), location.reload
+
+const deleteAllBtn = document.querySelector('.delete-all-btn');
+const checkoutBtn = document.querySelector('.checkoutBtn');
 
 
+deleteAllBtn.addEventListener("click",()=>{
+    localStorage.clear();
+    location.reload();
+});
 
+checkoutBtn.addEventListener('click',()=>{
+    localStorage.clear();
+    location.reload();
+
+    alert(`Thank you ${totalPrice} ${totalItems}`);
+});
 
 
 
